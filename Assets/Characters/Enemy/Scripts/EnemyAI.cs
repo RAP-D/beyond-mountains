@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour
 
     private void EngageEnemy()
     {
-        if (navMeshAgent.stoppingDistance<distanceToTarget && distanceToTarget<=chaseRange) {
+        if (navMeshAgent.stoppingDistance<distanceToTarget) {
             ChaseEnemy();
         } else if (navMeshAgent.stoppingDistance>=distanceToTarget) {
             AttactTarget();
