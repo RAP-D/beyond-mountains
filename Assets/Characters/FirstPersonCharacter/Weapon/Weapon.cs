@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] Camera FPCamera;
-    [SerializeField] float range = 10f;
+    [SerializeField]Camera fpCamera;
+    [SerializeField] float range = 100f;
     RaycastHit hit;
     [SerializeField] float damage = 10;
     [SerializeField] Ammo ammo;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -35,8 +30,9 @@ public class Weapon : MonoBehaviour
 
     private void ProcessRayCast()
     {
-        if (Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range))
+        if (Physics.Raycast(fpCamera.transform.position, fpCamera.transform.forward, out hit, range))
         {
+            print("fdsfdsf");
             //TODO add some hit Effect
             EnemyHealth enemyHealth = hit.transform.GetComponent<EnemyHealth>();
             if (enemyHealth == null) { return; }

@@ -313,9 +313,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9134229474580635559}
-  - component: {fileID: 1638388661}
   m_Layer: 0
-  m_Name: Weapon
+  m_Name: Weapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336,22 +335,6 @@ Transform:
   m_Father: {fileID: 6434428492416012451}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1638388661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9004139752917984326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8af7e59f1683588439bb1a388d39bb0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FPCamera: {fileID: 6434428492416012463}
-  range: 100
-  damage: 10
-  ammo: {fileID: 944208283}
 --- !u!1 &9212153507324391507
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +425,7 @@ GameObject:
   - component: {fileID: 9212153507561561912}
   - component: {fileID: 9212153507561561918}
   - component: {fileID: 9212153507561561919}
+  - component: {fileID: 9022109430673571030}
   m_Layer: 0
   m_Name: Carbine
   m_TagString: Untagged
@@ -515,6 +499,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &9022109430673571030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212153507561561913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8af7e59f1683588439bb1a388d39bb0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fpCamera: {fileID: 6434428492416012463}
+  range: 100
+  damage: 10
+  ammo: {fileID: 944208283}
 --- !u!1 &9212153508322884274
 GameObject:
   m_ObjectHideFlags: 0
