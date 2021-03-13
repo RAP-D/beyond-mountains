@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6434428492416012463}
   - component: {fileID: 6434428492416012448}
   - component: {fileID: 6434428492416012462}
+  - component: {fileID: 1776759787}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -93,6 +94,23 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6434428492416012460}
   m_Enabled: 1
+--- !u!114 &1776759787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6434428492416012460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acee48d8f5185ac4d847cfab56c97ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fpsCamera: {fileID: 6434428492416012463}
+  ZoomInFOV: 30
+  ZoomOutFOV: 60
+  ZoomInMouseSens: 1
+  ZoomOutMouseSens: 2
 --- !u!1 &6434428492440153884
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +124,9 @@ GameObject:
   - component: {fileID: 6434428492440153886}
   - component: {fileID: 6434428492440153887}
   - component: {fileID: 2717255091434611170}
+  - component: {fileID: 944208282}
+  - component: {fileID: 944208283}
+  - component: {fileID: 944208279}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -240,6 +261,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &944208282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6434428492440153884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8130eb89224cfa14592ea1a172203c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverCanvas: {fileID: 0}
+--- !u!114 &944208283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6434428492440153884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e160eebdf2651024782f62c870b590fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoCount: 10
+--- !u!114 &944208279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6434428492440153884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acee48d8f5185ac4d847cfab56c97ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fpsCamera: {fileID: 6434428492416012463}
+  ZoomInFOV: 30
+  ZoomOutFOV: 60
+  ZoomInMouseSens: 1
+  ZoomOutMouseSens: 2
 --- !u!1 &9004139752917984326
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +351,7 @@ MonoBehaviour:
   FPCamera: {fileID: 6434428492416012463}
   range: 100
   damage: 10
+  ammo: {fileID: 944208283}
 --- !u!1 &9212153507324391507
 GameObject:
   m_ObjectHideFlags: 0
