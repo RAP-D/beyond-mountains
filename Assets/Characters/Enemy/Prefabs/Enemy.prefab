@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcbffa9e537633e47bfc55c42ab1abd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 6434428492440153872, guid: f3f5610338e35374ba7e3eb8bfc8d6f9, type: 3}
   chaseRange: 5
 --- !u!114 &961437916
 MonoBehaviour:
