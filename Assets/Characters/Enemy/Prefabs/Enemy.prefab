@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 7955494689088198254}
   - component: {fileID: 961437916}
   - component: {fileID: 9125961754017596395}
+  - component: {fileID: 7089737409778208523}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -226,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcbffa9e537633e47bfc55c42ab1abd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 6434428492440153872, guid: f3f5610338e35374ba7e3eb8bfc8d6f9, type: 3}
+  target: {fileID: 0}
   chaseRange: 5
 --- !u!114 &961437916
 MonoBehaviour:
@@ -260,3 +261,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7089737409778208523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955494689088198255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664bab62cffae2f4a9dc28b5316761ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  attackDamage: 30
