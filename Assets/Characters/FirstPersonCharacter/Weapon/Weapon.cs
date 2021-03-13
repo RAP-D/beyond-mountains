@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float range = 10f;
     RaycastHit hit;
     [SerializeField] float damage = 10;
+    [SerializeField] Ammo ammo;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,15 +27,23 @@ public class Weapon : MonoBehaviour
 
     private void Shoot()
     {
+        if (ammo.GetCurrentAmmoCount()>0) {
+            ammo.ReduceAmmoCount();
+            ProcessRayCast();
+        }
+    }
+
+    private void ProcessRayCast()
+    {
         if (Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range))
         {
-            print(hit.transform.name);
             //TODO add some hit Effect
             EnemyHealth enemyHealth = hit.transform.GetComponent<EnemyHealth>();
             if (enemyHealth == null) { return; }
             enemyHealth.TakeDamage(damage);
         }
-        else {
+        else
+        {
             return;
         }
     }
