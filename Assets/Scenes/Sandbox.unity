@@ -2517,6 +2517,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1674989203}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1543597118 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6265519964947987657, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 9212153508046130859}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acee48d8f5185ac4d847cfab56c97ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1555244584 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5862bbfe91a75054ca72c13b555b6ac5,
@@ -3558,6 +3570,11 @@ PrefabInstance:
       propertyPath: hitImpact
       value: 
       objectReference: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+    - target: {fileID: 9022109430673571030, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
+        type: 3}
+      propertyPath: weaponZoom
+      value: 
+      objectReference: {fileID: 1543597118}
     - target: {fileID: 9022109430673571030, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
       propertyPath: fireInterval

@@ -13,6 +13,12 @@ public class WeaponZoom : MonoBehaviour
     [SerializeField] float ZoomOutMouseSens = 2f;
     bool isZoomToggle=false;
 
+    private void OnDisable()
+    {
+        ZoomOut();
+        isZoomToggle = false;
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(1)){
