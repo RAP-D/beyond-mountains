@@ -3349,9 +3349,20 @@ PrefabInstance:
       propertyPath: gameOverCanvas
       value: 
       objectReference: {fileID: 1570265560}
-    - target: {fileID: 944208283, guid: f3f5610338e35374ba7e3eb8bfc8d6f9, type: 3}
-      propertyPath: ammoCount
-      value: 10
+    - target: {fileID: 466465599166636738, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 466465599166636739, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312116122631631392, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6434428492440153872, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
@@ -3412,6 +3423,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212153507561561913, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3f5610338e35374ba7e3eb8bfc8d6f9, type: 3}
