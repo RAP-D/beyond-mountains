@@ -28,4 +28,9 @@ public class Ammo : MonoBehaviour
     public int GetCurrentAmmoCount(AmmoType ammoType) {
         return GetAmmoSlot(ammoType).ammoCount;
     }
+
+    public void IncreaseAmmoCount(AmmoType ammoType,int ammoAmount)
+    {
+        GetAmmoSlot(ammoType).ammoCount += ammoAmount;
+    }
 }

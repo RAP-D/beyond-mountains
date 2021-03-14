@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 944208283}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,7 +267,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e160eebdf2651024782f62c870b590fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoCount: 10
+  ammoSlots:
+  - ammoType: 0
+    ammoCount: 18
+  - ammoType: 1
+    ammoCount: 10
+  - ammoType: 2
+    ammoCount: 5
 --- !u!1 &9004139752917984326
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,6 +348,11 @@ PrefabInstance:
       propertyPath: fpCamera
       value: 
       objectReference: {fileID: 6434428492416012463}
+    - target: {fileID: 7023954175343864582, guid: c77a092f11ea79e498a2fea100b6d684,
+        type: 3}
+      propertyPath: timeBetweenShots
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7176140127709858024, guid: c77a092f11ea79e498a2fea100b6d684,
         type: 3}
       propertyPath: m_RootOrder
@@ -535,7 +546,7 @@ PrefabInstance:
     - target: {fileID: 7176140127709858024, guid: 9e1861552f5aa994eb1d30befa7684c3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.17000002
+      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: 7176140127709858024, guid: 9e1861552f5aa994eb1d30befa7684c3,
         type: 3}

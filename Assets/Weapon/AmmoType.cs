@@ -1,5 +1,5 @@
 public enum AmmoType {
-    NineMM,
+    _9MM,
     Shell,
-    FiftyCal
+    _50Cal
 }
