@@ -1381,12 +1381,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 82096aab38f01cb40a1cbf8629a810ba, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44884af1ac1d64d42902da40268ba120, type: 3}
---- !u!1 &737487245 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9052234679525948806, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
-    type: 3}
-  m_PrefabInstance: {fileID: 9212153508046130859}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &741500939
 GameObject:
   m_ObjectHideFlags: 0
@@ -3355,6 +3349,10 @@ PrefabInstance:
       propertyPath: gameOverCanvas
       value: 
       objectReference: {fileID: 1570265560}
+    - target: {fileID: 944208283, guid: f3f5610338e35374ba7e3eb8bfc8d6f9, type: 3}
+      propertyPath: ammoCount
+      value: 10000000
+      objectReference: {fileID: 0}
     - target: {fileID: 466465599166636738, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -3444,7 +3442,7 @@ PrefabInstance:
         type: 3}
       propertyPath: hitImpact
       value: 
-      objectReference: {fileID: 737487245}
+      objectReference: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
     - target: {fileID: 9022109430673571030, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
       propertyPath: fireInterval
