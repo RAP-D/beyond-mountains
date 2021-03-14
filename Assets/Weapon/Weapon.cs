@@ -15,6 +15,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject hitImpact;
     bool canShoot = true;
 
+    private void OnEnable()
+    {
+        canShoot = true;
+    }
 
     // Update is called once per frame
     void Update()
