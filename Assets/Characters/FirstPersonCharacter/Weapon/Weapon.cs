@@ -9,30 +9,35 @@ public class Weapon : MonoBehaviour
     RaycastHit hit;
     [SerializeField] float damage = 10;
     [SerializeField] Ammo ammo;
+    [SerializeField] float timeBetweenShots=0.1f;
+    bool canShoot = true;
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetMouseButtonDown(0) && canShoot)
         {
-            Shoot();
+            StartCoroutine(Shoot());
         }
 
     }
 
-    private void Shoot()
+    private IEnumerator Shoot()
     {
+        canShoot = false;
         if (ammo.GetCurrentAmmoCount()>0) {
             ammo.ReduceAmmoCount();
             ProcessRayCast();
         }
+        yield return new WaitForSeconds(timeBetweenShots);
+        canShoot = true;
     }
 
     private void ProcessRayCast()
     {
         if (Physics.Raycast(fpCamera.transform.position, fpCamera.transform.forward, out hit, range))
         {
-            print("fdsfdsf");
             //TODO add some hit Effect
             EnemyHealth enemyHealth = hit.transform.GetComponent<EnemyHealth>();
             if (enemyHealth == null) { return; }

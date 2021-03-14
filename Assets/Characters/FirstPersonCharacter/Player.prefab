@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6434428492416012463}
   - component: {fileID: 6434428492416012448}
   - component: {fileID: 6434428492416012462}
-  - component: {fileID: 1776759787}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -94,23 +93,6 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6434428492416012460}
   m_Enabled: 1
---- !u!114 &1776759787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6434428492416012460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acee48d8f5185ac4d847cfab56c97ea1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fpsCamera: {fileID: 6434428492416012463}
-  ZoomInFOV: 30
-  ZoomOutFOV: 60
-  ZoomInMouseSens: 1
-  ZoomOutMouseSens: 2
 --- !u!1 &6434428492440153884
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +108,6 @@ GameObject:
   - component: {fileID: 2717255091434611170}
   - component: {fileID: 944208282}
   - component: {fileID: 944208283}
-  - component: {fileID: 944208279}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -287,23 +268,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoCount: 10
---- !u!114 &944208279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6434428492440153884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acee48d8f5185ac4d847cfab56c97ea1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fpsCamera: {fileID: 6434428492416012463}
-  ZoomInFOV: 30
-  ZoomOutFOV: 60
-  ZoomInMouseSens: 1
-  ZoomOutMouseSens: 2
 --- !u!1 &9004139752917984326
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +308,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9134229474580635559}
     m_Modifications:
+    - target: {fileID: 5385593307459382041, guid: c77a092f11ea79e498a2fea100b6d684,
+        type: 3}
+      propertyPath: fpsCamera
+      value: 
+      objectReference: {fileID: 6434428492416012463}
+    - target: {fileID: 5385593307459382041, guid: c77a092f11ea79e498a2fea100b6d684,
+        type: 3}
+      propertyPath: fpsController
+      value: 
+      objectReference: {fileID: 6434428492440153887}
     - target: {fileID: 7023954175343864582, guid: c77a092f11ea79e498a2fea100b6d684,
         type: 3}
       propertyPath: ammo
@@ -434,6 +408,11 @@ PrefabInstance:
       propertyPath: ammo
       value: 
       objectReference: {fileID: 944208283}
+    - target: {fileID: 7023954175343864582, guid: a45675c44ea1eda4898d463464d69f29,
+        type: 3}
+      propertyPath: damage
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 7023954175343864582, guid: a45675c44ea1eda4898d463464d69f29,
         type: 3}
       propertyPath: fpCamera
@@ -537,7 +516,7 @@ PrefabInstance:
     - target: {fileID: 7176140127709858024, guid: 9e1861552f5aa994eb1d30befa7684c3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.8400001
+      value: -0.17000002
       objectReference: {fileID: 0}
     - target: {fileID: 7176140127709858024, guid: 9e1861552f5aa994eb1d30befa7684c3,
         type: 3}
@@ -552,7 +531,7 @@ PrefabInstance:
     - target: {fileID: 7176140127709858024, guid: 9e1861552f5aa994eb1d30befa7684c3,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7176140127709858024, guid: 9e1861552f5aa994eb1d30befa7684c3,
         type: 3}
@@ -562,7 +541,7 @@ PrefabInstance:
     - target: {fileID: 7176140127709858024, guid: 9e1861552f5aa994eb1d30befa7684c3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7176140127709858024, guid: 9e1861552f5aa994eb1d30befa7684c3,
         type: 3}

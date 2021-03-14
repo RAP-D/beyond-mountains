@@ -3357,12 +3357,12 @@ PrefabInstance:
     - target: {fileID: 466465599166636739, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5312116122631631392, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6434428492440153872, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
@@ -3424,10 +3424,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9022109430673571030, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
+        type: 3}
+      propertyPath: range
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9022109430673571030, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
+        type: 3}
+      propertyPath: damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9022109430673571030, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
+        type: 3}
+      propertyPath: fireInterval
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9022109430673571030, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
+        type: 3}
+      propertyPath: timeBetweenShots
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 9212153507561561913, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1776759787, guid: f3f5610338e35374ba7e3eb8bfc8d6f9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f3f5610338e35374ba7e3eb8bfc8d6f9, type: 3}
