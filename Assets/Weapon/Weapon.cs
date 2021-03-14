@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject hitImpact;
     bool canShoot = true;
+    [SerializeField] AmmoType ammoType;
 
     private void OnEnable()
     {
@@ -33,8 +34,8 @@ public class Weapon : MonoBehaviour
     private IEnumerator Shoot()
     {
         canShoot = false;
-        if (ammo.GetCurrentAmmoCount()>0) {
-            ammo.ReduceAmmoCount();
+        if (ammo.GetCurrentAmmoCount(ammoType) >0) {
+            ammo.ReduceAmmoCount(ammoType);
             PlayMuzzleFlash();
             ProcessRayCast();
         }
