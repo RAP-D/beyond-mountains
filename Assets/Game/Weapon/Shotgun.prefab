@@ -472,7 +472,7 @@ Transform:
   - {fileID: 7176140126228758957}
   - {fileID: 7176140128009693058}
   - {fileID: 7176140126714987264}
-  - {fileID: 4188709177269782738}
+  - {fileID: 5177346661963111345}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -542,8 +542,8 @@ MonoBehaviour:
   damage: 100
   ammo: {fileID: 0}
   timeBetweenShots: 1.5
-  muzzleFlash: {fileID: 2771093076344467357}
-  hitImpact: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+  muzzleFlash: {fileID: 6596665073308433662}
+  hitImpact: {fileID: 100010, guid: d2c856fec6e17aa468d5bb180d0e6cd5, type: 3}
   ammoType: 1
 --- !u!1 &7176140128009693059
 GameObject:
@@ -626,7 +626,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1001 &1467191343367487169
+--- !u!1001 &7612327290449063330
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -695,15 +695,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a60d8477aafac045a1f56d3a60c7813, type: 3}
---- !u!4 &4188709177269782738 stripped
+--- !u!4 &5177346661963111345 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3350055855090824723, guid: 4a60d8477aafac045a1f56d3a60c7813,
     type: 3}
-  m_PrefabInstance: {fileID: 1467191343367487169}
+  m_PrefabInstance: {fileID: 7612327290449063330}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &2771093076344467357 stripped
+--- !u!198 &6596665073308433662 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3614249443508621660, guid: 4a60d8477aafac045a1f56d3a60c7813,
     type: 3}
-  m_PrefabInstance: {fileID: 1467191343367487169}
+  m_PrefabInstance: {fileID: 7612327290449063330}
   m_PrefabAsset: {fileID: 0}
