@@ -10,9 +10,10 @@ namespace Player.Weapon
         [SerializeField] AmmoType ammoType;
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "Player")
+            Ammo ammo;
+            if (ammo=other.GetComponent<Ammo>())
             {
-                other.GetComponent<Ammo>().IncreaseAmmoCount(ammoType, ammoAmount);
+                ammo.IncreaseAmmoCount(ammoType, ammoAmount);
                 Destroy(gameObject);
             }
         }

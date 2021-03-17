@@ -8,9 +8,10 @@ namespace Player.Utility {
         [SerializeField] int battries = 1;
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "Player")
+            Battery battery;
+            if (battery=other.GetComponent<Battery>())
             {
-                other.GetComponent<Battery>().IncreaseBatteries(battries);
+                battery.IncreaseBatteries(battries);
                 Destroy(gameObject);
             }
         }
