@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 944208282}
   - component: {fileID: 944208283}
   - component: {fileID: 6742016029683007693}
+  - component: {fileID: 2147092562}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -321,6 +322,19 @@ MonoBehaviour:
     slowDownRate: 20
     airControl: 0
     shellOffset: 0
+--- !u!114 &2147092562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6434428492440153884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c9d1ada4996a54bb3b33bc96212aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BatteryAmount: 0
 --- !u!1 &9004139752917984326
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +666,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5201686523377030675, guid: 02b24012f42dfcc499280077a5c9a6d9,
         type: 3}
+      propertyPath: battery
+      value: 
+      objectReference: {fileID: 2147092562}
+    - target: {fileID: 5201686523377030675, guid: 02b24012f42dfcc499280077a5c9a6d9,
+        type: 3}
       propertyPath: lightDecay
       value: 1
       objectReference: {fileID: 0}
@@ -709,6 +728,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6717426315413917027, guid: 02b24012f42dfcc499280077a5c9a6d9,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6717426315413917027, guid: 02b24012f42dfcc499280077a5c9a6d9,
         type: 3}

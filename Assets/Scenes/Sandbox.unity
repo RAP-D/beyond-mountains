@@ -2638,25 +2638,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab33e6080ae416b4d899f39fa8951b98, type: 3}
---- !u!1 &2147092555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6434428492440153884, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
+--- !u!114 &2147092556 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 944208283, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
     type: 3}
   m_PrefabInstance: {fileID: 9212153508046130859}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2147092562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2147092555}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50c9d1ada4996a54bb3b33bc96212aa1, type: 3}
+  m_Script: {fileID: 11500000, guid: e160eebdf2651024782f62c870b590fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BatteryAmount: 0
 --- !u!4 &2779717478869721531 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6434428492440153872, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
@@ -2739,15 +2732,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1956531453, guid: f3f5610338e35374ba7e3eb8bfc8d6f9, type: 3}
-      propertyPath: m_Intensity
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1515758080763549581, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
+    - target: {fileID: 330429129699148076, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
-      propertyPath: battery
+      propertyPath: ammo
       value: 
-      objectReference: {fileID: 2147092562}
+      objectReference: {fileID: 2147092556}
+    - target: {fileID: 5428158067642061263, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
+        type: 3}
+      propertyPath: ammo
+      value: 
+      objectReference: {fileID: 2147092556}
     - target: {fileID: 6434428492440153872, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
       propertyPath: m_RootOrder
