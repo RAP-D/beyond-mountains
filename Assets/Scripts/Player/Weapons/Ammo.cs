@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Player.Weapon {
+namespace Player.Weapons {
     public class Ammo : MonoBehaviour
     {
 

@@ -2,11 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Player.Weapons;
+
 namespace Player{
     public class WeaponSwitcher : MonoBehaviour
     {
+        [SerializeField] Camera fpsCamera;
+        [SerializeField] PlayerMovementController fpsController;
+        [SerializeField] WeaponController weaponController;
+        [SerializeField] Ammo ammo;
         // Start is called before the first frame update
         int currentWeaponIndex = 0;
+
+        void Awake()
+        {
+            InitializeWeapons();    
+        }
+
+        private void InitializeWeapons()
+        {
+            foreach (Transform weapon in transform)
+            {
+                Weapon weaponTemp = weapon.GetComponent<Weapon>();
+                weaponTemp.fpsCamera = this.fpsCamera;
+                weaponTemp.fpsController = this.fpsController;
+                weaponTemp.ammo = this.ammo;
+            }
+        }
+
         void Start()
         {
             SetActiveWeapon();
@@ -19,6 +42,7 @@ namespace Player{
             {
                 if (currentWeaponIndex == weaponIndex)
                 {
+                    weaponController.setWeapon(weapon.GetComponent<Weapon>());
                     weapon.gameObject.SetActive(true);
                 }
                 else
