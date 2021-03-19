@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 7176140127709858024}
   - component: {fileID: 7176140127709858030}
   - component: {fileID: 7176140127709858031}
-  - component: {fileID: 7023954175343864582}
+  - component: {fileID: 5262357558735385482}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -525,7 +525,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7023954175343864582
+--- !u!114 &5262357558735385482
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -534,17 +534,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 7176140127709858025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8af7e59f1683588439bb1a388d39bb0c, type: 3}
+  m_Script: {fileID: 11500000, guid: 537cfe08f71d32b4b8c5ebe0d9d685ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fpCamera: {fileID: 0}
-  range: 50
+  fpsCamera: {fileID: 0}
+  fpsController: {fileID: 0}
+  range: 100
   damage: 10
   ammo: {fileID: 0}
-  timeBetweenShots: 0.2
+  timeBetweenShots: 0.1
   muzzleFlash: {fileID: 101160586857034086}
   hitImpact: {fileID: 100010, guid: d2c856fec6e17aa468d5bb180d0e6cd5, type: 3}
+  canShoot: 1
   ammoType: 0
+  zoomInFOV: 30
+  zoomOutFOV: 60
+  zoomInMouseSens: 1
+  zoomOutMouseSens: 2
+  isZoomToggle: 0
 --- !u!1 &7176140128009693059
 GameObject:
   m_ObjectHideFlags: 0

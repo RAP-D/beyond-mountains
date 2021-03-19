@@ -2,67 +2,101 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Player.Weapons;
 
-public class WeaponSwitcher : MonoBehaviour
-{
-    // Start is called before the first frame update
-    [SerializeField] int currentWeaponIndex = 0;
-    void Start()
+namespace Player{
+    public class WeaponSwitcher : MonoBehaviour
     {
-        SetActiveWeapon();
-    }
+        [SerializeField] Camera fpsCamera;
+        [SerializeField] PlayerMovementController fpsController;
+        [SerializeField] WeaponController weaponController;
+        [SerializeField] Ammo ammo;
+        // Start is called before the first frame update
+        int currentWeaponIndex = 0;
 
-    private void SetActiveWeapon()
-    {
-        int weaponIndex = 0;
-        foreach (Transform weapon in transform) {
-            if (currentWeaponIndex == weaponIndex)
-            {
-                weapon.gameObject.SetActive(true);
-            }
-            else {
-                weapon.gameObject.SetActive(false);
-            }
-            weaponIndex++;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        int previousWeaponIndex = currentWeaponIndex;
-        ProcessMouseWheelInput();
-        ProcessKeyboardInput();
-        if (previousWeaponIndex!=currentWeaponIndex) { SetActiveWeapon(); }
-    }
-
-    private void ProcessKeyboardInput()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            currentWeaponIndex = 0;
-        }
-        else if(Input.GetKeyDown(KeyCode.Alpha2)) {
-            currentWeaponIndex = 1;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        void Awake()
         {
-            currentWeaponIndex = 2;
+            InitializeWeapons();    
+        }
+
+        private void InitializeWeapons()
+        {
+            foreach (Transform weapon in transform)
+            {
+                Weapon weaponTemp = weapon.GetComponent<Weapon>();
+                weaponTemp.fpsCamera = this.fpsCamera;
+                weaponTemp.fpsController = this.fpsController;
+                weaponTemp.ammo = this.ammo;
+            }
+        }
+
+        void Start()
+        {
+            SetActiveWeapon();
+        }
+
+        private void SetActiveWeapon()
+        {
+            int weaponIndex = 0;
+            foreach (Transform weapon in transform)
+            {
+                if (currentWeaponIndex == weaponIndex)
+                {
+                    weaponController.setWeapon(weapon.GetComponent<Weapon>());
+                    weapon.gameObject.SetActive(true);
+                }
+                else
+                {
+                    weapon.gameObject.SetActive(false);
+                }
+                weaponIndex++;
+            }
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            int previousWeaponIndex = currentWeaponIndex;
+            ProcessMouseWheelInput();
+            ProcessKeyboardInput();
+            if (previousWeaponIndex != currentWeaponIndex) { SetActiveWeapon(); }
+        }
+
+        private void ProcessKeyboardInput()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                currentWeaponIndex = 0;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                currentWeaponIndex = 1;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                currentWeaponIndex = 2;
+            }
+        }
+
+        private void ProcessMouseWheelInput()
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                if (transform.childCount - 1 <= currentWeaponIndex) { currentWeaponIndex = 0; }
+                else { currentWeaponIndex++; }
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                if (currentWeaponIndex <= 0)
+                {
+                    currentWeaponIndex = transform.childCount - 1;
+                }
+                else
+                {
+                    currentWeaponIndex--;
+                }
+            }
         }
     }
 
-    private void ProcessMouseWheelInput()
-    {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0) {
-            if (transform.childCount - 1 <= currentWeaponIndex) { currentWeaponIndex = 0; }
-            else { currentWeaponIndex++; }
-        } else if (Input.GetAxis("Mouse ScrollWheel") < 0) {
-            if (currentWeaponIndex <= 0)
-            {
-                currentWeaponIndex = transform.childCount - 1;
-            }
-            else {
-                currentWeaponIndex--;
-            }
-        }
-    }
 }
