@@ -490,6 +490,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 297353937}
   m_PrefabAsset: {fileID: 0}
+--- !u!223 &219199328 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4183696866732135893, guid: b6efa258ed3e29d428b0b7f228ef59de,
+    type: 3}
+  m_PrefabInstance: {fileID: 280056741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &280056741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2789,6 +2795,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 944208282, guid: f3f5610338e35374ba7e3eb8bfc8d6f9, type: 3}
+      propertyPath: gameOverCanvas
+      value: 
+      objectReference: {fileID: 219199328}
     - target: {fileID: 6434428492440153872, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
       propertyPath: m_RootOrder
