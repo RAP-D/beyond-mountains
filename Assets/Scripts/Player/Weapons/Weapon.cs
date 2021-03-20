@@ -22,6 +22,7 @@ namespace Player.Weapons {
         [SerializeField] float zoomInMouseSens = 1f;
         [SerializeField] float zoomOutMouseSens = 2f;
         public bool isZoomToggle = false;
+        public bool isAutomatic = false;
 
         private void OnEnable()
         {

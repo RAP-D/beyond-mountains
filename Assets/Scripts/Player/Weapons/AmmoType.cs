@@ -3,7 +3,7 @@ namespace Player.Weapons {
     {
         _9MM,
         Shell,
-        _50Cal
+        _30
     }
 }
 
