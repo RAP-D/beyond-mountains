@@ -42,7 +42,7 @@ namespace Player{
             {
                 if (currentWeaponIndex == weaponIndex)
                 {
-                    weaponController.setWeapon(weapon.GetComponent<Weapon>());
+                    weaponController.SetWeapon(weapon.GetComponent<Weapon>());
                     weapon.gameObject.SetActive(true);
                 }
                 else

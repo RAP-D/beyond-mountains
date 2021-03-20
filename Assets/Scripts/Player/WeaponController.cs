@@ -11,20 +11,32 @@ namespace Player{
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetMouseButtonDown(0) && weapon.canShoot)
+            if (weapon.isAutomatic)
             {
-                StartCoroutine(weapon.Shoot());
+                if (Input.GetMouseButton(0) && weapon.canShoot)
+                {
+                    StartCoroutine(weapon.Shoot());
+                }
+            }
+            else {
+                if (Input.GetMouseButtonDown(0) && weapon.canShoot)
+                {
+                    StartCoroutine(weapon.Shoot());
+                }
             }
 
-            if (Input.GetMouseButtonDown(1))
-            {
+            if (Input.GetMouseButtonDown(1)) { 
                 weapon.isZoomToggle = !weapon.isZoomToggle;
+                if (weapon.isZoomToggle)
+                {
+                    weapon.ZoomIn();
+                }
+                else
+                {
+                    weapon.ZoomOut();
+                }
             }
-            if (weapon.isZoomToggle) { weapon.ZoomIn(); }
-            else { weapon.ZoomOut(); }
-
         }
-
-        public void setWeapon(Weapon weapon) { this.weapon = weapon; }
+        public void SetWeapon(Weapon weapon) { this.weapon = weapon; }
     }
 }
