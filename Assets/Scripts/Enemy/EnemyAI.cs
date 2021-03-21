@@ -13,10 +13,12 @@ namespace Enemy {
         NavMeshAgent navMeshAgent;
         bool isProvoked = false;
         [SerializeField] float turnSpeed = 5f;
+        [SerializeField] float EnemySightAngle = 90f;
 
         void Start()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
+            
         }
         void Update()
         {
@@ -25,10 +27,28 @@ namespace Enemy {
             {
                 EngageEnemy();
             }
-            else if (distanceToTarget <= chaseRange)
+            else if (distanceToTarget <= chaseRange && IsInSight() )
             {
                 isProvoked = true;
             }
+
+            IsInSight();
+        }
+
+        private bool IsInSight()
+        {
+            Vector3 direction = (target.position-transform.position).normalized;
+            float angle = Vector3.Angle(transform.forward, direction);
+            if (Mathf.Abs(angle) < EnemySightAngle)
+            {
+                RaycastHit hit;
+                Physics.Raycast(transform.position, direction, out hit);
+                if (hit.transform.Equals(target)) {
+                    return true;
+                }
+            }
+            ;
+            return false;
         }
 
         private void ChaseEnemy()
@@ -71,6 +91,7 @@ namespace Enemy {
         }
 
         public void OnDamageTaken() { isProvoked = true; }
+
     }
 }
 
