@@ -81,6 +81,10 @@ namespace Enemy {
             Gizmos.color = new Color(1, 0, 0, 0.5f);
             Gizmos.DrawWireSphere(transform.position, chaseRange);
         }
+        private void OnCollisionEnter(Collision collision)
+        {
+            isProvoked = true;
+        }
 
         private void FaceTarget()
         {
