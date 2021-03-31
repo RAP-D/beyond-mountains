@@ -87,7 +87,6 @@ namespace Enemy {
         {
             isProvoked = true;
         }
-
         private void FaceTarget()
         {
             Vector3 direction = (target.position - transform.position).normalized;
