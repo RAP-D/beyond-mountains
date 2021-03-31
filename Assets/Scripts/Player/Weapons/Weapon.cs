@@ -7,7 +7,7 @@ namespace Player.Weapons {
     public class Weapon : MonoBehaviour
     {
         public Camera fpsCamera;
-        public PlayerMovementController fpsController;
+        public PlayerLook playerLook;
         [SerializeField] float range = 100f;
         RaycastHit hit;
         [SerializeField] float damage = 10;
@@ -43,8 +43,7 @@ namespace Player.Weapons {
 
         private void SetMouseSensitivity(float sensitivity)
         {
-            fpsController.mouseLook.XSensitivity = sensitivity;
-            fpsController.mouseLook.YSensitivity = sensitivity;
+            playerLook.mouseSensitivity= sensitivity;
         }
 
         public void ZoomOut()

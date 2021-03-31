@@ -42,9 +42,11 @@ namespace Enemy {
             if (Mathf.Abs(angle) < EnemySightAngle)
             {
                 RaycastHit hit;
-                Physics.Raycast(transform.position, direction, out hit);
-                if (hit.transform.Equals(target)) {
-                    return true;
+                if (Physics.Raycast(transform.position, direction, out hit)){
+                    if (hit.transform.Equals(target))
+                    {
+                        return true;
+                    }
                 }
             }
             ;

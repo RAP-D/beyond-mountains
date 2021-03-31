@@ -190,7 +190,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7955494689088198255}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e0944f47b4097134b84434c1997ada82, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -234,6 +234,7 @@ MonoBehaviour:
   target: {fileID: 0}
   chaseRange: 5
   turnSpeed: 5
+  EnemySightAngle: 90
 --- !u!114 &961437916
 MonoBehaviour:
   m_ObjectHideFlags: 0

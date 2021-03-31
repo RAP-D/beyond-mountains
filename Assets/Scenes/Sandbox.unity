@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1764,17 +1764,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7955494689088198252, guid: ff5f565de68bf13489946b54cf18aa6e,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: e0944f47b4097134b84434c1997ada82,
-        type: 2}
-    - target: {fileID: 7955494689088198252, guid: ff5f565de68bf13489946b54cf18aa6e,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7955494689088198254, guid: ff5f565de68bf13489946b54cf18aa6e,
         type: 3}
       propertyPath: target
@@ -2810,30 +2799,6 @@ PrefabInstance:
       propertyPath: gameOverCanvas
       value: 
       objectReference: {fileID: 219199328}
-    - target: {fileID: 944208283, guid: f3f5610338e35374ba7e3eb8bfc8d6f9, type: 3}
-      propertyPath: ammoSlots.Array.data[2].ammoCount
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 3105578499311628661, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
-        type: 3}
-      propertyPath: damage
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 3105578499311628661, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
-        type: 3}
-      propertyPath: isAutomatic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3105578499311628661, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
-        type: 3}
-      propertyPath: timeBetweenShots
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3235929519522404768, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
-        type: 3}
-      propertyPath: timeBetweenShots
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6434428492440153872, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
       propertyPath: m_RootOrder
@@ -2842,17 +2807,17 @@ PrefabInstance:
     - target: {fileID: 6434428492440153872, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3887646
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6434428492440153872, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.59
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 6434428492440153872, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.74
+      value: -3.576
       objectReference: {fileID: 0}
     - target: {fileID: 6434428492440153872, guid: f3f5610338e35374ba7e3eb8bfc8d6f9,
         type: 3}
