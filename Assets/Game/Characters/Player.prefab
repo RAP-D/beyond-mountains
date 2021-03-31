@@ -373,8 +373,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7ee0bd666bca9499e2e49e673e54c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  jumpMultiplier: 300
+  walkSpeed: 7
+  runSpeed: 12
+  crouchSpeed: 3
+  proneSpeed: 1
+  jumpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.99999994
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.75
+      value: 0
+      inSlope: -0.033884037
+      outSlope: -0.033884037
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.11045853
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  jumpMultiplier: 10
 --- !u!1 &9004139752917984326
 GameObject:
   m_ObjectHideFlags: 0

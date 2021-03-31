@@ -19,11 +19,16 @@ namespace Player.Weapons {
         [SerializeField] AmmoType ammoType;
         [SerializeField] float zoomInFOV = 30f;
         [SerializeField] float zoomOutFOV = 60f;
-        [SerializeField] float zoomInMouseSens = 1f;
-        [SerializeField] float zoomOutMouseSens = 2f;
+        float zoomInMouseSens = 1f;
+        float zoomOutMouseSens = 2f;
         public bool isZoomToggle = false;
         public bool isAutomatic = false;
 
+        private void Start()
+        {
+            zoomInMouseSens = playerLook.mouseSensitivity * zoomInFOV / zoomOutFOV;
+            zoomOutMouseSens = playerLook.mouseSensitivity * zoomOutFOV / zoomInFOV;
+        }
         private void OnEnable()
         {
             canShoot = true;
