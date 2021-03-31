@@ -8,7 +8,7 @@ namespace Player{
     public class WeaponSwitcher : MonoBehaviour
     {
         [SerializeField] Camera fpsCamera;
-        [SerializeField] PlayerMovementController fpsController;
+        [SerializeField] PlayerLook playerLook;
         [SerializeField] WeaponController weaponController;
         [SerializeField] Ammo ammo;
         // Start is called before the first frame update
@@ -25,7 +25,7 @@ namespace Player{
             {
                 Weapon weaponTemp = weapon.GetComponent<Weapon>();
                 weaponTemp.fpsCamera = this.fpsCamera;
-                weaponTemp.fpsController = this.fpsController;
+                weaponTemp.playerLook= this.playerLook;
                 weaponTemp.ammo = this.ammo;
             }
         }

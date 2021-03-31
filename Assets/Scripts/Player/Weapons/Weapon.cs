@@ -7,7 +7,7 @@ namespace Player.Weapons {
     public class Weapon : MonoBehaviour
     {
         public Camera fpsCamera;
-        public PlayerMovementController fpsController;
+        public PlayerLook playerLook;
         [SerializeField] float range = 100f;
         RaycastHit hit;
         [SerializeField] float damage = 10;
@@ -19,11 +19,16 @@ namespace Player.Weapons {
         [SerializeField] AmmoType ammoType;
         [SerializeField] float zoomInFOV = 30f;
         [SerializeField] float zoomOutFOV = 60f;
-        [SerializeField] float zoomInMouseSens = 1f;
-        [SerializeField] float zoomOutMouseSens = 2f;
+        float zoomInMouseSens = 1f;
+        float zoomOutMouseSens = 2f;
         public bool isZoomToggle = false;
         public bool isAutomatic = false;
 
+        private void Start()
+        {
+            zoomInMouseSens = playerLook.mouseSensitivity * zoomInFOV / zoomOutFOV;
+            zoomOutMouseSens = playerLook.mouseSensitivity * zoomOutFOV / zoomInFOV;
+        }
         private void OnEnable()
         {
             canShoot = true;
@@ -43,8 +48,7 @@ namespace Player.Weapons {
 
         private void SetMouseSensitivity(float sensitivity)
         {
-            fpsController.mouseLook.XSensitivity = sensitivity;
-            fpsController.mouseLook.YSensitivity = sensitivity;
+            playerLook.mouseSensitivity= sensitivity;
         }
 
         public void ZoomOut()
