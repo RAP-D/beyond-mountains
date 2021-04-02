@@ -20,7 +20,9 @@ namespace Enemy {
         Vector3 lastKnownTargetPosition;
         Vector3 spawnPosition;
         private Quaternion spawnRotation;
-        
+        float stoppingDistance;
+
+
         enum EnemyBehavior{
             Engage,
             LookSuspicious,
@@ -42,6 +44,7 @@ namespace Enemy {
             navMeshAgent = GetComponent<NavMeshAgent>();
             spawnPosition = transform.position;
             spawnRotation=transform.rotation;
+            stoppingDistance = navMeshAgent.stoppingDistance;
         }
 
         void Update()
@@ -125,8 +128,10 @@ namespace Enemy {
 
         private void OnCollisionEnter(Collision collision)// Trigger OnCollide event when colliding with the player and set related enemyBehavior.
         {
-            enemyBehavior  = EnemyBehavior.Engage;
-            lastTriggeredEvent = EnemyEvents.OnCollide;
+            if (collision.gameObject.transform.Equals(target.transform)) {
+                enemyBehavior = EnemyBehavior.Engage;
+                lastTriggeredEvent = EnemyEvents.OnCollide;
+            }
         }
 
         public void OnDamageTaken()// Trigger OnDamageTaken event when taking damage and set related enemyBehavior.
@@ -164,12 +169,25 @@ namespace Enemy {
 
         private IEnumerator SearchForEnemy()
         {
-            navMeshAgent.SetDestination(lastKnownTargetPosition);
-            yield return new WaitForSeconds(EnemySearchTime);
-            navMeshAgent.SetDestination(spawnPosition);
-            transform.rotation = Quaternion.Slerp(transform.rotation, spawnRotation, Time.deltaTime * turnSpeed);
-            enemyBehavior = EnemyBehavior.Neutral;
-            lastTriggeredEvent = EnemyEvents.Neutral;
+            navMeshAgent.stoppingDistance = 0f;
+            if (navMeshAgent.pathStatus == NavMeshPathStatus.PathPartial)
+            {
+                navMeshAgent.SetDestination(navMeshAgent.pathEndPosition);
+            }
+            else if(navMeshAgent.pathStatus==NavMeshPathStatus.PathComplete) {
+                navMeshAgent.SetDestination(lastKnownTargetPosition);
+            }
+            if (navMeshAgent.remainingDistance<=Mathf.Epsilon) {
+                yield return new WaitForSeconds(EnemySearchTime);
+                navMeshAgent.SetDestination(spawnPosition);
+                if (navMeshAgent.remainingDistance<=Mathf.Epsilon) {
+                    navMeshAgent.stoppingDistance = stoppingDistance;
+                    transform.rotation = Quaternion.Slerp(transform.rotation, spawnRotation, Time.deltaTime * turnSpeed);
+                    enemyBehavior = EnemyBehavior.Neutral;
+                    lastTriggeredEvent = EnemyEvents.Neutral;
+                }
+            }
+            
         }
         private void EngageEnemy()
         {
@@ -208,9 +226,7 @@ namespace Enemy {
             Gizmos.DrawWireSphere(transform.position, suspiciousRange);
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, chaseRange);
-        }       
-        
-
+        }
     }
 }
 
