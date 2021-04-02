@@ -542,7 +542,7 @@ MonoBehaviour:
   range: 1000
   damage: 100
   ammo: {fileID: 0}
-  timeBetweenShots: 2
+  timeBetweenShots: 0.01
   muzzleFlash: {fileID: 403594146333471295}
   hitImpact: {fileID: 100010, guid: d2c856fec6e17aa468d5bb180d0e6cd5, type: 3}
   ammoType: 2
