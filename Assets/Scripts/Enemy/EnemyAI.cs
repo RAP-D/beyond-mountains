@@ -19,11 +19,11 @@ namespace Enemy {
         [SerializeField] private EnemyEvents lastTriggeredEvent=EnemyEvents.Neutral;
         [SerializeField] private PatrolPathController patrolPath;
         Vector3 lastKnownTargetPosition;
-        Vector3 guardPosition;
+        [SerializeField] Vector3 guardPosition;
         private Quaternion spawnRotation;
         float stoppingDistance;
-        private float wapointTolerance=1f;
         int currentWaypointIndex = 0;
+        private float positionTolerance=2f;
 
         enum EnemyBehavior{
             Engage,
@@ -59,7 +59,6 @@ namespace Enemy {
 
         private void InteractWithTargetInThisFrame()
         {
-
             // Don't change the order.
             if (enemyBehavior == EnemyBehavior.Suspicious) {
                 FaceTarget();
@@ -67,16 +66,12 @@ namespace Enemy {
                 StartCoroutine(SearchForEnemy());
             } else if (enemyBehavior == EnemyBehavior.Back) {
                 Back();
-            }
-            else if (enemyBehavior == EnemyBehavior.Engage) {
+            }else if (enemyBehavior == EnemyBehavior.Engage) {
                 EngageEnemy();
             } else if(enemyBehavior==EnemyBehavior.Guard) {
-                //Patrol();
+                Patrol();
             }
         }
-
-        
-
         private void GetEnemyBehaviorOfThisFrame()
         {
             distanceToTarget = Vector3.Distance(target.position, transform.position);
@@ -105,7 +100,7 @@ namespace Enemy {
                     }
                     else
                     {
-                        // Trigger if not the player was search or engage by enemy (if player got into suspicious range from out of it. ).
+                        // Trigger if not the player was search or engage by enemy (if player got into visible range from out of it. ).
                         enemyBehavior = EnemyBehavior.Suspicious;
                     }
                 }
@@ -113,7 +108,7 @@ namespace Enemy {
             }
             else
             {
-                // Trigger related events if the player is out of suspicious range in this frame.
+                // Trigger related events if the player is out of visible range in this frame.
                 if (lastTriggeredEvent == EnemyEvents.OnCollide)
                 {
                     // Trigger the player collide with enemy's back. 
@@ -180,35 +175,34 @@ namespace Enemy {
         private IEnumerator SearchForEnemy()
         {
             navMeshAgent.stoppingDistance = 0f;
-            if (navMeshAgent.pathStatus == NavMeshPathStatus.PathPartial)
-            {
-                navMeshAgent.SetDestination(navMeshAgent.pathEndPosition);
-            }
-            else if (navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
-            {
-                navMeshAgent.SetDestination(lastKnownTargetPosition);
-            }
-            //TODO try another way
-            yield return new WaitForSeconds(Time.deltaTime);// skip frame
-            if (navMeshAgent.remainingDistance != Mathf.Infinity && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && navMeshAgent.remainingDistance == 0)
-            {
+            bool movementDone = MoveEnemyTo(lastKnownTargetPosition);
+            if (movementDone) {
+                navMeshAgent.stoppingDistance = stoppingDistance;
                 yield return new WaitForSeconds(EnemySearchTime);
                 enemyBehavior = EnemyBehavior.Back;
             }
-            navMeshAgent.stoppingDistance = stoppingDistance;
         }
 
         private void Back()
         {
             navMeshAgent.stoppingDistance = 0f;
-            navMeshAgent.SetDestination(guardPosition);
-            if (navMeshAgent.remainingDistance != Mathf.Infinity && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && navMeshAgent.remainingDistance == 0)
-            {
+            bool movementDone = MoveEnemyTo(guardPosition);
+            if (movementDone) {
                 navMeshAgent.stoppingDistance = stoppingDistance;
                 transform.rotation = Quaternion.Slerp(transform.rotation, spawnRotation, Time.deltaTime * turnSpeed);
                 enemyBehavior = EnemyBehavior.Guard;
                 lastTriggeredEvent = EnemyEvents.Neutral;
             }
+        }
+
+        private bool MoveEnemyTo(Vector3 position)
+        {
+            navMeshAgent.SetDestination(position);
+            if (Vector3.Distance(transform.position,position)<positionTolerance)
+            {
+                return true;
+            }
+            else { return false; }
         }
 
         private void EngageEnemy()
@@ -244,13 +238,14 @@ namespace Enemy {
         private void Patrol()
         {
             Vector3 nextPosition = guardPosition;
-            while (patrolPath!=null) {
+            if (patrolPath!=null) {
                 if (AtWaypoint()) {
                     CycleWaypoint();
                 }
+                print(nextPosition);
                 nextPosition = GetCurrentWaypoint();
             }
-            navMeshAgent.SetDestination(nextPosition);
+            MoveEnemyTo(nextPosition);
         }
         private Vector3 GetCurrentWaypoint()
         {
@@ -265,7 +260,7 @@ namespace Enemy {
         private bool AtWaypoint()
         {
             float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());
-            return distanceToTarget < wapointTolerance;
+            return distanceToWaypoint <positionTolerance;
         }
 
         private void OnDrawGizmosSelected()
