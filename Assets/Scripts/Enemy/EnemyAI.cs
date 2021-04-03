@@ -175,7 +175,7 @@ namespace Enemy {
         private IEnumerator SearchForEnemy()
         {
             navMeshAgent.stoppingDistance = 0f;
-            bool movementDone = MoveEnemyTo(lastKnownTargetPosition);
+            bool movementDone= MoveEnemyTo(lastKnownTargetPosition);
             if (movementDone) {
                 navMeshAgent.stoppingDistance = stoppingDistance;
                 yield return new WaitForSeconds(EnemySearchTime);
@@ -186,7 +186,7 @@ namespace Enemy {
         private void Back()
         {
             navMeshAgent.stoppingDistance = 0f;
-            bool movementDone = MoveEnemyTo(guardPosition);
+            bool movementDone=MoveEnemyTo(guardPosition);
             if (movementDone) {
                 navMeshAgent.stoppingDistance = stoppingDistance;
                 transform.rotation = Quaternion.Slerp(transform.rotation, spawnRotation, Time.deltaTime * turnSpeed);
@@ -197,14 +197,48 @@ namespace Enemy {
 
         private bool MoveEnemyTo(Vector3 position)
         {
-            navMeshAgent.SetDestination(position);
-            if (Vector3.Distance(transform.position,position)<positionTolerance)
+            //TODO review 
+            if(enemyBehavior == EnemyBehavior.Back) {
+                navMeshAgent.SetDestination(position);
+                if (Vector3.Distance(transform.position, position) < positionTolerance)
+                {
+                    return true; ;
+                }
+                else { 
+                    return false;
+                }
+            }else
             {
-                return true;
+                if (navMeshAgent.pathStatus == NavMeshPathStatus.PathPartial)
+                {
+                    navMeshAgent.SetDestination(navMeshAgent.pathEndPosition);
+                    if (Vector3.Distance(transform.position, navMeshAgent.pathEndPosition) < positionTolerance)
+                    {
+                        return true; ;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else if (navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
+                {
+                    navMeshAgent.SetDestination(position);
+                    if (Vector3.Distance(transform.position, position) < positionTolerance)
+                    {
+                        return true; ;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else { return false; }
         }
-
         private void EngageEnemy()
         {
             FaceTarget();
@@ -242,7 +276,6 @@ namespace Enemy {
                 if (AtWaypoint()) {
                     CycleWaypoint();
                 }
-                print(nextPosition);
                 nextPosition = GetCurrentWaypoint();
             }
             MoveEnemyTo(nextPosition);
