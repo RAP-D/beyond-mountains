@@ -9,25 +9,28 @@ namespace Enemy {
     {
         [SerializeField] Transform target;
         [SerializeField] float chaseRange = 5f;
-        [SerializeField] float suspiciousRange = 20f;
+        [SerializeField] float visibleRange = 20f;
         [SerializeField] float turnSpeed = 5f;
         [SerializeField] float EnemySightAngle = 90f;
         [SerializeField] float EnemySearchTime = 10f;
         float distanceToTarget = Mathf.Infinity;
         NavMeshAgent navMeshAgent;
-        [SerializeField] private EnemyBehavior enemyBehavior =EnemyBehavior.Neutral;
+        [SerializeField] private EnemyBehavior enemyBehavior =EnemyBehavior.Guard;
         [SerializeField] private EnemyEvents lastTriggeredEvent=EnemyEvents.Neutral;
+        [SerializeField] private PatrolPathController patrolPath;
         Vector3 lastKnownTargetPosition;
-        Vector3 spawnPosition;
+        Vector3 guardPosition;
         private Quaternion spawnRotation;
         float stoppingDistance;
-
+        private float wapointTolerance=1f;
+        int currentWaypointIndex = 0;
 
         enum EnemyBehavior{
             Engage,
-            LookSuspicious,
+            Suspicious,
             SearchForEnemy,
-            Neutral
+            Guard,
+            Back
         }
         enum EnemyEvents {
             InChaseRangeAndOnSight,
@@ -42,7 +45,7 @@ namespace Enemy {
         void Start()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
-            spawnPosition = transform.position;
+            guardPosition = transform.position;
             spawnRotation=transform.rotation;
             stoppingDistance = navMeshAgent.stoppingDistance;
         }
@@ -58,14 +61,21 @@ namespace Enemy {
         {
 
             // Don't change the order.
-            if (enemyBehavior  == EnemyBehavior.LookSuspicious) {
+            if (enemyBehavior == EnemyBehavior.Suspicious) {
                 FaceTarget();
-            } else if (enemyBehavior  == EnemyBehavior.SearchForEnemy) {
+            } else if (enemyBehavior == EnemyBehavior.SearchForEnemy) {
                 StartCoroutine(SearchForEnemy());
-            } else if (enemyBehavior  == EnemyBehavior.Engage) {
+            } else if (enemyBehavior == EnemyBehavior.Back) {
+                Back();
+            }
+            else if (enemyBehavior == EnemyBehavior.Engage) {
                 EngageEnemy();
+            } else if(enemyBehavior==EnemyBehavior.Guard) {
+                //Patrol();
             }
         }
+
+        
 
         private void GetEnemyBehaviorOfThisFrame()
         {
@@ -76,18 +86,18 @@ namespace Enemy {
                 enemyBehavior = EnemyBehavior.Engage;
                 lastTriggeredEvent = EnemyEvents.InChaseRangeAndOnSight; // Set this frame EnemyEvent to use the next frame.
             }
-            else if (distanceToTarget <= suspiciousRange && IsInSight())
+            else if (distanceToTarget <= visibleRange && IsInSight())
             {
                 // Trigger if the player moves out of the chase range while enemy engage with him.
                 if (lastTriggeredEvent == EnemyEvents.InChaseRangeAndOnSight)
                 {
                     enemyBehavior  = EnemyBehavior.Engage;
                 }
-                // Trigger if the player in the suspicious range.
+                // Trigger if the player in the visible range.
                 else if (lastTriggeredEvent == EnemyEvents.InSuspiciousRangeAndOnSight)
                 {
                     // Trigger if the player was search or engage by enemy.
-                    if (enemyBehavior  == EnemyBehavior.Engage || enemyBehavior  == EnemyBehavior.SearchForEnemy)
+                    if (enemyBehavior  == EnemyBehavior.Engage || enemyBehavior  == EnemyBehavior.SearchForEnemy || enemyBehavior==EnemyBehavior.Back)
                     {
                         // Continue search.
                         enemyBehavior  = EnemyBehavior.SearchForEnemy;
@@ -96,7 +106,7 @@ namespace Enemy {
                     else
                     {
                         // Trigger if not the player was search or engage by enemy (if player got into suspicious range from out of it. ).
-                        enemyBehavior = EnemyBehavior.LookSuspicious;
+                        enemyBehavior = EnemyBehavior.Suspicious;
                     }
                 }
                 lastTriggeredEvent = EnemyEvents.InSuspiciousRangeAndOnSight; // Set this frame EnemyEvent to use the next frame.
@@ -109,19 +119,19 @@ namespace Enemy {
                     // Trigger the player collide with enemy's back. 
                     enemyBehavior = EnemyBehavior.Engage;
                 }
-                else if (lastTriggeredEvent != EnemyEvents.OutOfRange && (enemyBehavior  == EnemyBehavior.SearchForEnemy || enemyBehavior  == EnemyBehavior.Engage))
+                else if (lastTriggeredEvent != EnemyEvents.OutOfRange && (enemyBehavior  == EnemyBehavior.SearchForEnemy))
                 {
-                    // Trigger if the player moves out of suspicious range while enemy search for him or Engage with him.
+                    // Trigger if the player moves out of visible range while enemy search for him or Engage with him.
                     enemyBehavior = EnemyBehavior.SearchForEnemy;
                     lastKnownTargetPosition = target.position;
                     lastTriggeredEvent = EnemyEvents.OutOfRange;// Set this frame EnemyEvent to use the next frame.
                 }
-                else if (lastTriggeredEvent != EnemyEvents.OutOfRange && enemyBehavior  == EnemyBehavior.LookSuspicious)
+                else if (lastTriggeredEvent != EnemyEvents.OutOfRange && enemyBehavior  == EnemyBehavior.Suspicious)
                 {
-                    // Trigger if the player moves out of suspicious range while Enemy looks Suspiciously.
+                    // Trigger if the player moves out of visible range while Enemy looks Suspiciously.
                     transform.rotation = spawnRotation;
                     lastTriggeredEvent = EnemyEvents.OutOfRange; // Set this frame EnemyEvent to use the next frame.
-                    enemyBehavior  = EnemyBehavior.Neutral;
+                    enemyBehavior  = EnemyBehavior.Guard;
                 }
             }
         }
@@ -138,12 +148,12 @@ namespace Enemy {
         {
             if (lastTriggeredEvent == EnemyEvents.InChaseRangeAndOnSight || lastTriggeredEvent == EnemyEvents.InSuspiciousRangeAndOnSight || lastTriggeredEvent == EnemyEvents.OnCollide)
             {
-                // trigger if the player in chase range or suspicious range.
+                // Trigger if the player in chase range or suspicious range.
                 enemyBehavior  = EnemyBehavior.Engage;
             }
             else
             {
-                // trigger if the player out of the suspicious range.
+                // Trigger if the player out of the suspicious range.
                 enemyBehavior = EnemyBehavior.SearchForEnemy;
                 lastKnownTargetPosition = target.position;
             }
@@ -174,21 +184,33 @@ namespace Enemy {
             {
                 navMeshAgent.SetDestination(navMeshAgent.pathEndPosition);
             }
-            else if(navMeshAgent.pathStatus==NavMeshPathStatus.PathComplete) {
+            else if (navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
+            {
                 navMeshAgent.SetDestination(lastKnownTargetPosition);
             }
-            if (navMeshAgent.remainingDistance<=Mathf.Epsilon) {
+            //TODO try another way
+            yield return new WaitForSeconds(Time.deltaTime);// skip frame
+            if (navMeshAgent.remainingDistance != Mathf.Infinity && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && navMeshAgent.remainingDistance == 0)
+            {
                 yield return new WaitForSeconds(EnemySearchTime);
-                navMeshAgent.SetDestination(spawnPosition);
-                if (navMeshAgent.remainingDistance<=Mathf.Epsilon) {
-                    navMeshAgent.stoppingDistance = stoppingDistance;
-                    transform.rotation = Quaternion.Slerp(transform.rotation, spawnRotation, Time.deltaTime * turnSpeed);
-                    enemyBehavior = EnemyBehavior.Neutral;
-                    lastTriggeredEvent = EnemyEvents.Neutral;
-                }
+                enemyBehavior = EnemyBehavior.Back;
             }
-            
+            navMeshAgent.stoppingDistance = stoppingDistance;
         }
+
+        private void Back()
+        {
+            navMeshAgent.stoppingDistance = 0f;
+            navMeshAgent.SetDestination(guardPosition);
+            if (navMeshAgent.remainingDistance != Mathf.Infinity && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && navMeshAgent.remainingDistance == 0)
+            {
+                navMeshAgent.stoppingDistance = stoppingDistance;
+                transform.rotation = Quaternion.Slerp(transform.rotation, spawnRotation, Time.deltaTime * turnSpeed);
+                enemyBehavior = EnemyBehavior.Guard;
+                lastTriggeredEvent = EnemyEvents.Neutral;
+            }
+        }
+
         private void EngageEnemy()
         {
             FaceTarget();
@@ -219,11 +241,37 @@ namespace Enemy {
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
         }
+        private void Patrol()
+        {
+            Vector3 nextPosition = guardPosition;
+            while (patrolPath!=null) {
+                if (AtWaypoint()) {
+                    CycleWaypoint();
+                }
+                nextPosition = GetCurrentWaypoint();
+            }
+            navMeshAgent.SetDestination(nextPosition);
+        }
+        private Vector3 GetCurrentWaypoint()
+        {
+            return patrolPath.GetWaypoint(currentWaypointIndex);
+        }
+
+        private void CycleWaypoint()
+        {
+            currentWaypointIndex = patrolPath.GetNextIndex(currentWaypointIndex);
+        }
+
+        private bool AtWaypoint()
+        {
+            float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());
+            return distanceToTarget < wapointTolerance;
+        }
 
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, suspiciousRange);
+            Gizmos.DrawWireSphere(transform.position, visibleRange);
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, chaseRange);
         }
