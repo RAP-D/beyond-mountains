@@ -18,7 +18,7 @@ namespace Player {
         [SerializeField] private AnimationCurve jumpCurve;
         [SerializeField] private float jumpMultiplier = 300f;
         private bool isJumping = false;
-        private bool isFallen = false;
+        private bool isFalling = false;
         public float FallingThreshold = -10f;
         PlayerHealth playerHealth;
         // Start is called before the first frame update
@@ -35,7 +35,7 @@ namespace Player {
         {
             InputProcess();
             CheckFalling();
-            if (isFallen) {
+            if (isFalling) {
                 playerHealth.TakeDamage(50*Time.deltaTime);    
             }
         }
@@ -44,10 +44,10 @@ namespace Player {
         {
             if (characterController.velocity.y < FallingThreshold)
             {
-                isFallen = true;
+                isFalling = true;
             }
             else {
-                isFallen = false;
+                isFalling = false;
             }
         }
 
