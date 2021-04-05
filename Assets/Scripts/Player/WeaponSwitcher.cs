@@ -16,17 +16,16 @@ namespace Player{
 
         void Awake()
         {
-            InitializeWeapons();    
+            InitializeWeaponsDependance();    
         }
 
-        private void InitializeWeapons()
+        private void InitializeWeaponsDependance()
         {
-            foreach (Transform weapon in transform)
-            {
-                Weapon weaponTemp = weapon.GetComponent<Weapon>();
-                weaponTemp.fpsCamera = this.fpsCamera;
-                weaponTemp.playerLook= this.playerLook;
-                weaponTemp.ammo = this.ammo;
+            for (int i = 0; i < 3; i++) {
+                Gun gun = transform.GetChild(i).GetComponent<Gun>();
+                gun.fpsCamera = fpsCamera;
+                gun.playerLook = playerLook;
+                gun.ammo = ammo;
             }
         }
 
@@ -75,6 +74,9 @@ namespace Player{
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 currentWeaponIndex = 2;
+            }
+            else if (Input.GetKeyDown(KeyCode.E)) {
+                currentWeaponIndex = 3;
             }
         }
 

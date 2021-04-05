@@ -7,36 +7,29 @@ using UnityEngine;
 namespace Player{
     public class WeaponController : MonoBehaviour
     {
-        private Weapon weapon;
+        private Weapon Weapon;
         // Update is called once per frame
         void Update()
         {
-            if (weapon.isAutomatic)
+            if (Weapon.IsAutomatic())
             {
-                if (Input.GetMouseButton(0) && weapon.canShoot)
+                if (Input.GetMouseButton(0) && Weapon.CanAttack())
                 {
-                    StartCoroutine(weapon.Shoot());
+                    StartCoroutine(Weapon.Attack());
                 }
             }
             else {
-                if (Input.GetMouseButtonDown(0) && weapon.canShoot)
+                if (Input.GetMouseButtonDown(0) && Weapon.CanAttack())
                 {
-                    StartCoroutine(weapon.Shoot());
+                    StartCoroutine(Weapon.Attack());
                 }
             }
 
-            if (Input.GetMouseButtonDown(1)) { 
-                weapon.isZoomToggle = !weapon.isZoomToggle;
-                if (weapon.isZoomToggle)
-                {
-                    weapon.ZoomIn();
-                }
-                else
-                {
-                    weapon.ZoomOut();
-                }
+            if (Input.GetMouseButtonDown(1)) 
+            {
+                Weapon.AlternativeAttack();
             }
         }
-        public void SetWeapon(Weapon weapon) { this.weapon = weapon; }
+        public void SetWeapon(Weapon weapon) { this.Weapon = weapon; }
     }
 }
