@@ -1,4 +1,5 @@
 using Enemy;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,19 @@ namespace Player.Weapons {
         }
         public override void AlternativeAttack()
         {
-            return; 
+            if (canAttack) {
+                StartCoroutine(SecondaryAttack());
+            }
+        }
+
+        private IEnumerator SecondaryAttack()
+        {
+            canAttack = false;
+            damage = secondaryAttackDamage;
+            // trigger Animation hear
+            print("attack2");
+            yield return new WaitForSeconds(1f);
+            canAttack = true;
         }
 
         public override IEnumerator Attack()
@@ -29,7 +42,7 @@ namespace Player.Weapons {
             canAttack = false;
             damage = primaryAttackDamage;
             // trigger Animation hear
-
+            print("attack1");
             yield return new WaitForSeconds(1f);
             canAttack = true;
         }
