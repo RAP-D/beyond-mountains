@@ -43,8 +43,10 @@ namespace Player.Weapons {
             damage = primaryAttackDamage;
             // trigger Animation hear
             print("attack1");
+            GetComponent<Animator>().SetBool("attack", true);
             yield return new WaitForSeconds(1f);
             canAttack = true;
+            GetComponent<Animator>().SetBool("attack", false);
         }
 
         private void OnCollisionEnter(Collision collision)
