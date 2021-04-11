@@ -200,10 +200,10 @@ namespace Enemy {
         private IEnumerator SearchForEnemy()
         {
             bool movementDone= MoveEnemyTo(lastKnownTargetPosition);
+            GetComponent<Animator>().SetTrigger("move");
             if (movementDone) {
                 yield return new WaitForSeconds(EnemySearchTime);
                 enemyBehavior = EnemyBehavior.Back;
-                GetComponent<Animator>().SetTrigger("move");
             }
         }
         private void Back()
@@ -262,7 +262,6 @@ namespace Enemy {
         private void EngageEnemy()
         {
             FaceTarget();
-
             if (navMeshAgent.stoppingDistance < distanceToTarget)
             {
                 ChaseEnemy();
