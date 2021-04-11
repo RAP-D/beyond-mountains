@@ -21,6 +21,7 @@ namespace Player {
         private bool isFalling = false;
         public float FallingThreshold = -10f;
         PlayerHealth playerHealth;
+      
         // Start is called before the first frame update
         void Start()
         {
@@ -56,6 +57,11 @@ namespace Player {
 
             xMovement = Input.GetAxis("Horizontal");
             zMovement = Input.GetAxis("Vertical");
+            bool isrun = GetComponent<Animator>().GetBool("run");
+            bool forward = Input.GetKey("w");
+            bool walk = GetComponent<Animator>().GetBool("walk");
+            bool run = Input.GetKey("left shift");
+
             //Run
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -84,6 +90,27 @@ namespace Player {
             {
                 isJumping = true;
                 StartCoroutine(JumpPlayer());
+            }
+            if (!walk && forward)
+            {
+                GetComponent<Animator>().SetBool("walk", true);
+                //animt.SetBool("walk", true);
+            }
+            if (walk && !forward)
+            {
+                //animt.SetBool("walk", false);
+                GetComponent<Animator>().SetBool("walk", false);
+            }
+            if (!isrun && (forward && run))
+            {
+               //animt.SetBool("run", true);
+                GetComponent<Animator>().SetBool("run", true);
+
+            }
+            if (isrun && (!forward || !run))
+            {
+                //animt.SetBool("run", false);
+                GetComponent<Animator>().SetBool("run", false);
             }
         }
 
