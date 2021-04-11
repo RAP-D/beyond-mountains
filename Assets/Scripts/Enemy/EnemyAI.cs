@@ -203,6 +203,7 @@ namespace Enemy {
             if (movementDone) {
                 yield return new WaitForSeconds(EnemySearchTime);
                 enemyBehavior = EnemyBehavior.Back;
+                GetComponent<Animator>().SetTrigger("move");
             }
         }
         private void Back()
@@ -261,6 +262,7 @@ namespace Enemy {
         private void EngageEnemy()
         {
             FaceTarget();
+
             if (navMeshAgent.stoppingDistance < distanceToTarget)
             {
                 ChaseEnemy();
