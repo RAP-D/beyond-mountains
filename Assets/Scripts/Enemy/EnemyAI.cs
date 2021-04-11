@@ -209,10 +209,12 @@ namespace Enemy {
         private void Back()
         {
             bool movementDone=MoveEnemyTo(guardPosition);
+
             if (movementDone) {
                 transform.rotation = Quaternion.Slerp(transform.rotation, spawnRotation, Time.deltaTime * turnSpeed);
                 enemyBehavior = EnemyBehavior.Guard;
                 lastTriggeredEvent = EnemyEvents.Neutral;
+                GetComponent<Animator>().SetTrigger("idl");
             }
         }
         private bool MoveEnemyTo(Vector3 position)
@@ -301,6 +303,7 @@ namespace Enemy {
         private Vector3 GetCurrentWaypoint()
         {
             return patrolPath.GetWaypoint(currentWaypointIndex);
+
         }
         private void CycleWaypoint()
         {
